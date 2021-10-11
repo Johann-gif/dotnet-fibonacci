@@ -8,7 +8,8 @@ namespace Fibonacci.Tests
         [Fact]
         public async Task Test1()
         {
-            var result = await Fibo.ExecuteAsync(new[] {"4"});
+            using var fibonacciDataContext = new FibonacciDataContext();
+            var result = await new Fibo(fibonacciDataContext).ExecuteAsync(new[] {"4"});
             Assert.Single(result);
             Assert.Equal(3, result[0]);
         }

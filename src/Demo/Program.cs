@@ -7,7 +7,9 @@ using Fibonacci;
 Stopwatch stopwatch = new();
 stopwatch.Start();
 
-var tasks = await Fibo.ExecuteAsync(args);
+using var fibonacciDataContext = new FibonacciDataContext();
+
+var tasks = await new Fibo(fibonacciDataContext).ExecuteAsync(args);
 
 foreach (var task in tasks)
 {
